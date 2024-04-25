@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('arrow-down.png') no-repeat right center;
+    background-size: 24px;
+}
+
+button[type="submit"],
+a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+button[type="submit"]:hover,
+a:hover {
+    background-color: #0056b3;
+}
+
+.alert {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.5;
+}
+
+.close:hover {
+    color: #000;
+    text-decoration: none;
+    opacity: 0.75;
+}
+
+    </style>
+</head>
+<body>
+    <main>
+
+        <h1>Welomce to our SignUp Page</h1>
+        <h3>Create your account!</h3>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    
+
+
+    <form method="post" action="/signup/">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Create A Username (use only letters and numbers)" Required>
+        </div>
+        <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name" Required>
+        </div>
+        <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name" Required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email Address" Required>
+        </div>
+        <div class="form-group">
+            <label for="pass1">Password</label>
+            <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Create Your Password" Required>
+        </div>
+        <div class="form-group">
+            <label for="pass2">Confirm Password</label>
+            <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm Your Password" Required>
+        </div>
+        <div>
+            <label for="">Gender</label>
+            <select class="txtb" id="gender" name="gender" required>
+                <option value="" disabled selected>Select Your Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select><br><br>
+            </div>
+            <div>
+            <label for="">Date of Birth</label>
+            <input type="date" id="dob" placeholder="Enter Your Date of Birth" class="txtb" name="dob" required><br><br>
+            <div>
+            <label for="">Mobile Number </label>
+            <input type="tel" id="mobile_number" placeholder="Enter Your Mobile Number" class="txtb" name="mobile" required><br><br>
+            </div>
+         
+
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <a href="{% url 'login' %}">I have an account</a>
+    </form>
+    </main>
+    
+</body>
+</html>

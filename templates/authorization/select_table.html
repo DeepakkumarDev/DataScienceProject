@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Table</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" class="container mt-5" action="{% url 'descriptive' %}">
+        {% csrf_token %}
+        <h1>Hello, Select UserName and TableName for Some Basic Operations</h1>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{ request.user.username }}" readonly>
+        </div>
+
+        <label for="table_name">Select Table:</label>
+        <select id="table_name" name="table_name">
+            {% for table_name in table_names %}
+                <option value="{{ table_name }}">{{ table_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</body>
+</html>

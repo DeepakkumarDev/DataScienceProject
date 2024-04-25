@@ -1,0 +1,107 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descriptive Statistics</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Descriptive Statistics</h1>
+    
+    {% if error %}
+    <h2>Error:</h2>
+    <p>{{ error }}</p>
+    {% else %}
+    <table>
+        <tr>
+            <th>Statistic</th>
+            <th>cl1</th>
+            <th>cl2</th>
+        </tr>
+        <tr>
+            <td><strong>Mean Values</strong></td>
+            <td>{{ mean.cl1 }}</td>
+            <td>{{ mean.cl2 }}</td>
+        </tr>
+        <tr>
+            <td><strong>Max Values</strong></td>
+            <td>{{ max.cl1 }}</td>
+            <td>{{ max.cl2 }}</td>
+        </tr>
+        <tr>
+            <td><strong>Data Frame 5 rows</strong></td>
+            <td>{{ df.cl1 }}</td>
+            <td>{{ df.cl2 }}</td>
+        </tr>
+    </table>
+
+    <h2>Describe Function</h2>
+    <table>
+        <tr>
+            <th>Statistic</th>
+            <th>cl1</th>
+            <th>cl2</th>
+        </tr>
+        <tr>
+            <td>count</td>
+            <td>{{ describe.cl1.count }}</td>
+            <td>{{ describe.cl2.count }}</td>
+        </tr>
+        <tr>
+            <td>mean</td>
+            <td>{{ describe.cl1.mean }}</td>
+            <td>{{ describe.cl2.mean }}</td>
+        </tr>
+        <tr>
+            <td>std</td>
+            <td>{{ describe.cl1.std }}</td>
+            <td>{{ describe.cl2.std }}</td>
+        </tr>
+        <tr>
+            <td>min</td>
+            <td>{{ describe.cl1.min }}</td>
+            <td>{{ describe.cl2.min }}</td>
+        </tr>
+    
+            <tr>
+                <td>25%</td>
+                <td>{{ quantiles_cl1.25 }}</td>
+                <td>{{ quantiles_cl2.25 }}</td>
+            </tr>
+            <tr>
+                <td>50%</td>
+                <td>{{ quantiles_cl1.50 }}</td>
+                <td>{{ quantiles_cl2.50 }}</td>
+            </tr>
+            <tr>
+                <td>75%</td>
+                <td>{{ quantiles_cl1.75 }}</td>
+                <td>{{ quantiles_cl2.75 }}</td>
+            </tr>
+            
+        
+        
+    </table>
+
+    <h2>Line Graph:</h2>
+    <img src="{% static 'img/' %}{{ graph_filename }}" alt="Line Graph">
+    {% endif %}
+</body>
+</html>
